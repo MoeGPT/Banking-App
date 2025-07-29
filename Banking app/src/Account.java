@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +15,7 @@ import java.io.*;
  * 
  **/
  
-public class Account{
+public class Account implements Serializable{
     
     String fName;
     String lName;
@@ -30,7 +31,7 @@ public class Account{
     String country; 
     Scanner sc = new Scanner(System.in);
 
-    File userNames = new File("C:\\Users\\moesp.MOEOS\\Coding project\\test as\\src\\usernames.txt");
+    File userNames = new File("C:\\Users\\moesp.MOEOS\\Coding project\\Banking app\\src\\usernames.txt");
     
     
     
@@ -86,43 +87,58 @@ public class Account{
 
 
     }
-    // sets the username and checks to see if it already exists
+
+    // sets the username and checks to see if it already exists. continues to loop until username is unique
     public void setUsername() throws Exception{
+        boolean retry = true;
+        while(retry == true){
         System.out.println("Please enter a username: ");
         this.userName = sc.nextLine();
         
         // input validation 
         if (userName.matches("^[a-zA-Z0-9_]+$")) {
-            Scanner scUser = new Scanner(userNames);
             String takenName;
-            while(scUser.hasNextLine()){
-            takenName = scUser.nextLine();
+            int y = 0;
+            Scanner scUser = new Scanner(userNames);
+            //should compare userName to each line of file
+             while (scUser.hasNextLine()){
+                takenName = scUser.nextLine();
                 if(userName.equals(takenName)){
-                    System.out.println("That username is already taken. Please try again");
-                    this.userName = sc.nextLine();
+                    y++;
+                }
             }
             
-            }
             scUser.close();
+            if(y != 0){
+                System.out.println("That username is already taken.");
+                retry = true;
+            }
+            else{
+            retry = false;
+            }
+
+        }
+        else{
+            System.out.println("Invalid username. Only letters, digits, and underscores are allowed.");
+      }
+       
+    }
+        
+            
+
 
             //this should allow a new username to be added to the end of the file 
             System.out.println("Valid username.");
             try(FileWriter fw = new FileWriter(userNames, true);
                 BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter out = new PrintWriter(bw))
-            {
+                PrintWriter out = new PrintWriter(bw)){
+        
                 out.println(userName);
             } catch (IOException e) {
             //exception handling left as an exercise for the reader
             }       
-
      
         } 
-        else {
-            System.out.println("Invalid username. Only letters, digits, and underscores are allowed.");
-        }
-
-    }
     
     // sets and verify password
     public void setPassword(){
@@ -141,12 +157,14 @@ public class Account{
 
 
     }
+
     
     public void setLogin() throws Exception{
         setUsername();
         setPassword();
     }
     public void setAccountInfo(){
+        
 
     }
     
