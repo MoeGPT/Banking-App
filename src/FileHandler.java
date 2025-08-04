@@ -35,11 +35,6 @@ public class FileHandler implements Serializable{
 
         return accounts;
     }
-    /* 
-    public static void getAccounts(Linked){
-        for(file)
-        System.out.println();
-
-    }
-        */
+    /* TO DO: CREATE A PROCESS FOR CHECKING THAT THE USERNAMES' IN THE FILE MATCHES WITH THE USERNAMES IN THE ACCOUNTS.
+    IF AN ACCOUNT WITH A USERNAME IS NOT ON THE FILE ADD THAT USERNAME. IF A USERNAME HAVE NOT ACCOUNT LINKED TO IT. DELETE THAT USERNAME. */
 }

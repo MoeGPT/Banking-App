@@ -21,17 +21,36 @@ public class Account implements Serializable{
     String passWord;
     int routingNum;
     long accountNum; 
-    double balance;
+    double balance = 0.00;
     String streetAddress;
     String city;
     String state;
-    int zipCode;
-    String country; 
+    String zipCode;
     String fullAddress;
 
-    public String getName(){
+    public String getfName(){
         return this.fName;
 
+    }
+    public String getlName(){
+        return this.lName;
+    }
+    public String geteMail(){
+        return this.eMail;
+    }
+    public String getUserName(){
+        return this.userName;
+    }
+    public String getPassWord(){
+        return this.passWord;
+    }
+
+    public String getFullAddress(){
+        setAddress();
+        return this.fullAddress;
+    }
+    public double getBalance(){
+        return this.balance;
     }
     // sets first name
     public void setfName(String name){
@@ -73,18 +92,22 @@ public class Account implements Serializable{
 
     }
      
-    public void setZip(int zipCode){
+    public void setZip(String zipCode){
         this.zipCode = zipCode;
     }
-    
-    public void setCountry(String country){
-        this.country = country;
 
-    }
     
     public void setAddress(){
-        this.fullAddress = streetAddress + " " + city +", " + state + " " + zipCode + ", " + country;
+        this.fullAddress = streetAddress + ", " + city +" " + state + ", " + zipCode;
       
+    }
+
+    public void addBalance(double amount){
+        this.balance += amount;
+    }
+
+    public void removeBalance(double amount){
+        this.balance -= amount;
     }
 
     public int getRoutNum(){
