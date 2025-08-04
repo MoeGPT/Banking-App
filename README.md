@@ -28,3 +28,4 @@ I have finished the account creation process. I also added login and main menu f
 withdraw, and deposit funds. This was the main purpose of the program. So, I currently do not know if I plan to update this
 program to incorporate UI elements or real-world applications. I'm still considering the skills I can develop from that 
 or if I should invest time developing skills in other technologies like React and Javascript. 
+**Note** The username file is unneeded as I can use the linkedlist that stores all the accounts to check if a username exists or not. This also prevents modifications of the username.txt file from affecting the sign-up proccess. Will fix at a later date. 
